@@ -6,13 +6,19 @@
       <link rel="stylesheet" href="styles.css" />
    </head>
    <body>
-      <h1>Top Drawings</h1>
+      <h1>Top Drawings
+         <span class="infoButton">ℹ <span class="tooltipText">You can flag samples using Ctrl + click <br> then use the Console (flaggedSamples variables)</span></span>
+      </h1>
+
       <div id="inputContainer">
          <div id="predictedLabelContainer"></div>
       </div>
-      <div id="chartContainer"></div>
+      <div id="chartContainer">
+         <div id="confusionContainer"></div>
+      </div>
       <div id="controlPanel">
          <button onClick="toggleInput()">Toggle Input</button>
+         <button onClick="toggleOutput()">Toggle Output</button>
          <div id="statistics"></div>
       </div>
       <div id="container"></div>
@@ -28,10 +34,12 @@
 
       <script src="js/display.js"></script>
       <script src="js/sketchPad.js"></script>
+      <script src="js/dataCleaner.js"></script>
 
       <script src="./chart/graphics.js"></script>
       <script src="./chart/math.js"></script>
       <script src="./chart/chart.js"></script>
+      <script src="./chart/confusion.js"></script>
 
       <script>
          const featureNames = training.featureNames;
@@ -94,10 +102,17 @@
 
          const chart = new Chart(
             chartContainer,
-            trainingSamples,
+            testingSamples,
             options,
             handleClick
          );
+
+         const confusion = new Confusion(
+            confusionContainer,
+            testingSamples,
+            utils.classes,
+            options
+         )
 
          // Initializing the Sketch Pad
          const sketchPad = new SketchPad(inputContainer, onDrawingUpdate);

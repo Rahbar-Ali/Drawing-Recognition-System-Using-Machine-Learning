@@ -31,6 +31,7 @@ fileNames.forEach((fn) => {
    const content = fs.readFileSync(constants.RAW_DIR + "/" + fn);
    const { session, student, drawings } = JSON.parse(content);
    for (let label in drawings) {
+      if (!utils.flaggedSamples.includes(id)) {
       samples.push({
          id,
          label,
@@ -45,7 +46,7 @@ fileNames.forEach((fn) => {
       );
 
       generateImageFile(constants.IMG_DIR + "/" + id + ".png", paths);
-
+   } 
       utils.printProgress(id, fileNames.length * 8);
       id++;
    }

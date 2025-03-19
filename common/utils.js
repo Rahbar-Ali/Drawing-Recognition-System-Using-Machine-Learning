@@ -32,6 +32,9 @@ utils.flagedUser = [
   1673108841193, 1673350321605,
 ];
 
+utils.flaggedSamples = [79,78,339,354,379,381,435,436,437,438,440,439,434,433,683,705,1295,1579,1587,1627,1969];
+
+utils.classes = ["car","fish","house","tree","bicycle","guitar","pencil","clock"];
 utils.styles = {
   car: { color: "gray", text: "🚗" },
   fish: { color: "red", text: "🐠" },
